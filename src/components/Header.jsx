@@ -7,13 +7,13 @@ const Header = ({ cart, removeFromCart, decreseQuantity, increseQuantity, clearC
         <div className="row justify-content-center justify-content-md-between">
           <div className="col-8 col-md-3">
             <a href="index.html">
-              <img className="img-fluid" src="/img/Mustang-LOGO.svg" alt="imagen logo" />
+              <img className="img-fluid" src="/proyecto_automovil/img/mustang_logo.svg" alt="imagen logo" />
             </a>
           </div>
           <nav className="col-md-6 a mt-5 d-flex align-items-start justify-content-end">
             <div className="carrito-container">
               <div className="carrito">
-                <img className="img-fluid" src="/img/carrito.png" alt="imagen carrito" />
+                <img className="img-fluid" src="/proyecto_automovil/img/carrito.png" alt="imagen carrito" />
                 <div id="carrito-content" className="carrito-content">
                   { cart.length === 0 ? 
                   (<p className="text-center">El carrito está vacío</p>)   
@@ -35,7 +35,7 @@ const Header = ({ cart, removeFromCart, decreseQuantity, increseQuantity, clearC
                         key={id}
                       >
                         <td className="align-middle">
-                          <img className="img-fluid" src={`img/${image}.jpg`} alt="imagen automóvil" />
+                          <img className="img-fluid" src={`/proyecto_automovil/img/${image}`} alt="imagen automóvil" />
                         </td>
                         <td className="align-middle">{name}</td>
                         <td className="fw-bold align-middle">$ {price.toLocaleString()}</td>
