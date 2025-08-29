@@ -16,10 +16,15 @@ jobs:
         uses: actions/checkout@v2
 
       # Paso 2 - Configurar Node.js
-      - name: Setup Node
+      - name: Setup Node.js 18
         uses: actions/setup-node@v3  
         with:
           node-version: 18  # ?? Cambiamos de Node.js 16 a Node.js 18 para tener structuredClone
+
+      - name: Check Node and npm version
+        run: |
+          node -v
+          npm -v
 
       # Paso 3 - Instalar dependencias
       - name: Install dependencies
