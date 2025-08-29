@@ -13,30 +13,32 @@ jobs:
     steps:
       # Paso 1 - Checkout del repositorio
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Paso 2 - Configurar Node.js
       - name: Setup Node.js 18
-        uses: actions/setup-node@v3  
+        uses: actions/setup-node@v3
         with:
-          node-version: 18  # ?? Cambiamos de Node.js 16 a Node.js 18 para tener structuredClone
+          node-version: 18
 
       - name: Check Node and npm version
         run: |
           node -v
           npm -v
 
-      # Paso 3 - Instalar dependencias
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+      # Paso 3 - Instalación limpia de dependencias
+      - name: Clean install
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install
 
       # Paso 4 - Construir el proyecto
       - name: Build project
         run: npm run build
 
-      # Paso 5 - Subir archivos listos para producción con v4
+      # Paso 5 - Subir archivos listos para producción
       - name: Upload production-ready build files
-        uses: actions/upload-artifact@v4  
+        uses: actions/upload-artifact@v4
         with:
           name: production-files
           path: ./dist
@@ -48,9 +50,9 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
 
     steps:
-      # Paso 6 - Descargar los archivos de producción con v4
+      # Paso 6 - Descargar los archivos de producción
       - name: Download artifact
-        uses: actions/download-artifact@v4  
+        uses: actions/download-artifact@v4
         with:
           name: production-files
           path: ./dist
